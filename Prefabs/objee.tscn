@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dfnv8ek7x8h1i"]
+
+[ext_resource type="ArrayMesh" uid="uid://7vn0tuytmcea" path="res://assets/gravestone-cross-large.obj" id="1_27jlv"]
+[ext_resource type="Script" uid="uid://2a1vihxdsi66" path="res://Scripts/objee.gd" id="1_82b23"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_blvg3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+radius = 2.0799537
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1223132505]
+mesh = ExtResource("1_27jlv")
+script = ExtResource("1_82b23")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=923377721]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2125495413]
+shape = SubResource("SphereShape3D_blvg3")
+
+[node name="ObjeeArea" type="Area3D" parent="." unique_id=583133323]
+transform = Transform3D(-0.6870243, 0.38855535, 0.6140213, 0.28769484, -0.6305133, 0.7208915, 0.66725487, 0.6719209, 0.32139271, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObjeeArea" unique_id=918309870]
+shape = SubResource("SphereShape3D_yf5fn")
+
+[connection signal="body_entered" from="ObjeeArea" to="." method="_on_objee_area_body_entered"]
+[connection signal="body_exited" from="ObjeeArea" to="." method="_on_objee_area_body_exited"]
